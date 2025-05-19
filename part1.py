@@ -42,7 +42,8 @@ import matplotlib.pyplot as plt
 funcs = {
     'sin(x)': lambda x: np.sin(x * 3 * np.pi),
     'cos(x)': lambda x: np.cos(x * 3 * np.pi),
-    'noisy sin': lambda x: np.sin(x * 3 * np.pi) + np.random.uniform(-1e-6,1e-6, size=x.shape),
+    'meow meow meow AUGHAGHAHG': lambda x: np.sin(x ** 2 * 3 * np.pi + 1) + np.cos(2.7*np.cbrt(x)*3*np.pi - 1),
+    'noisy sin': lambda x: np.sin(x * 3 * np.pi) + np.random.uniform(-3e-1,3e-1, size=x.shape),
     'poly': lambda x: 0.9*x**10-0.5*x**5 - x**3 + 2*x**2 + x - 1
 }
 ns = list(range(2, 51)) + [256]
