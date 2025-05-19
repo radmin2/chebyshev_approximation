@@ -8,7 +8,7 @@ def chebyshev_approximation(f, n):
     y = f(x)
     return Chebyshev.fit(x, y, deg=n)
 
-f = np.sin
+f = lambda x: np.sin(x / 3 / np.pi)
 xs = np.linspace(-1, 1, 1000)
 f_true = f(xs)
 

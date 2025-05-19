@@ -16,7 +16,7 @@ def chebyshev_approximation(f, n):
     return cheb  # объект, реализующий функцию p(x)
 
 # Пример: аппроксимация sin(x) полиномом степени 5
-f = np.sin
+f = lambda x: np.sin(x * 3 * np.pi)
 p5 = chebyshev_approximation(f, 5)
 xs = np.linspace(-1, 1, 1000)
 error = np.max(np.abs(f(xs) - p5(xs)))
@@ -24,7 +24,7 @@ print("Макс. погрешность sin(x), n=5:", error)
 
 # Стабильность: добавим шум ±eps к коэффициентам и посмотрим ошибку
 n = 10
-p10 = chebyshev_approximation(np.sin, n)
+p10 = chebyshev_approximation(f, n)
 coeffs = p10.coef.copy()
 noise_levels = np.logspace(-9, -3, 7)
 errors = []
@@ -40,10 +40,10 @@ print("Ошибка vs шум в коэффициентах:", list(zip(noise_le
 import matplotlib.pyplot as plt
 
 funcs = {
-    'sin(x)': np.sin,
-    'cos(x)': np.cos,
-    'noisy sin': lambda x: np.sin(x) + np.random.uniform(-1e-6,1e-6, size=x.shape),
-    'poly': lambda x: 0.5*x**5 - x**3 + 2*x**2 - x + 1
+    'sin(x)': lambda x: np.sin(x * 3 * np.pi),
+    'cos(x)': lambda x: np.cos(x * 3 * np.pi),
+    'noisy sin': lambda x: np.sin(x * 3 * np.pi) + np.random.uniform(-1e-6,1e-6, size=x.shape),
+    'poly': lambda x: 0.9*x**10-0.5*x**5 - x**3 + 2*x**2 + x - 1
 }
 ns = list(range(2, 51)) + [256]
 for name, f in funcs.items():
